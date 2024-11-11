@@ -1,0 +1,590 @@
+@charset "UTF-8";
+body, html {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #f0f0f0;
+  font-family: "Varela Round", sans-serif;
+  color: #3a3e45;
+  overflow-x: hidden;
+}
+
+.centered-div {
+  width: 971px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #3a3e45;
+  font-size: 35px;
+}
+
+h2 {
+  margin-top: 40px;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0;
+  width: 80%;
+}
+.stepper .step-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  flex-basis: 0;
+  position: relative;
+  text-align: center;
+}
+.stepper .step-container .step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stepper .step-container .step-wrapper .step {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.stepper .step-container .step-wrapper .step.active {
+  background-color: rgb(106, 191, 4);
+}
+.stepper .step-container .step-wrapper .step-desc {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 10px;
+}
+.stepper .step-container .line {
+  position: absolute;
+  width: calc(100% - 10px);
+  height: 2px;
+  background-color: #ccc;
+  top: 35%;
+  left: 95px;
+  z-index: 1;
+}
+.stepper .step-container .line.active {
+  background-color: rgb(106, 191, 4);
+}
+
+.form-step {
+  display: none;
+  text-align: center;
+}
+.form-step.active {
+  display: block;
+}
+
+.form-navigation {
+  margin-top: 50px;
+}
+.form-navigation #nextBtn, .form-navigation #prevBtn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  margin-bottom: 40px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 160px;
+}
+.form-navigation #nextBtn:hover, .form-navigation #prevBtn:hover {
+  background-color: #ccc;
+}
+.form-navigation #nextBtn {
+  background-color: rgb(106, 191, 4);
+  color: white;
+}
+.form-navigation #nextBtn:hover {
+  background-color: rgb(73, 131, 8);
+}
+.form-navigation #prevBtn {
+  color: #3a3e45;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+#icon-medium {
+  max-height: 37px;
+  margin-bottom: 10px;
+}
+
+#dropArea {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  line-height: 2;
+  margin: 20px auto;
+  background-color: #f5fcff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 850px;
+  color: #828083;
+}
+#dropArea #uploadLink,
+#dropArea #removeUpload,
+#dropArea #uploadLinkCSV,
+#dropArea #removeCSVUpload {
+  color: #0281B0;
+  cursor: pointer;
+  font-weight: 400;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+#dropArea #uploadLink.csv,
+#dropArea #removeUpload.csv,
+#dropArea #uploadLinkCSV.csv,
+#dropArea #removeCSVUpload.csv {
+  margin-top: 10px;
+}
+#dropArea #dropText {
+  font-weight: 600;
+  font-size: 21px;
+}
+#dropArea #icon-large {
+  max-width: 140px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+#dropArea #icon-large-1 {
+  max-width: 140px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+#dropArea #icon-large-2 {
+  max-width: 140px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+#dropArea #fileName, #dropArea #csvFileName {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+#noBillButton {
+  display: block;
+  margin: 40px auto;
+  border-radius: 4px;
+  min-width: 160px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.retailer-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0px;
+  text-align: center;
+  margin: auto;
+  max-width: 900px;
+}
+
+.retailer-inner-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.retailer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 10px 10px;
+  width: 160px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.retailer-card.selected {
+  border: 3px solid rgb(106, 191, 4);
+}
+
+.retailer-logo {
+  max-height: 45px;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 10px;
+  height: 45px;
+}
+
+.stars {
+  width: 80%;
+  margin-bottom: 5px;
+}
+
+.retailer-name {
+  height: 60px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.retailer-text {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.retailer-text::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.retailer-text.solar::before {
+  background-image: url("images/solar.svg");
+}
+
+.retailer-text.battery::before {
+  background-image: url("images/battery.svg");
+  margin-left: 3px;
+}
+
+.retailer-text.hotwater::before {
+  background-image: url("images/hotwater.svg");
+}
+
+.retailer-text.heating::before {
+  background-image: url("images/heatingcooling.svg");
+}
+
+.retailer-text.cooking::before {
+  background-image: url("images/cooking.svg");
+}
+
+.option-container {
+  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.option, .product-option {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 208px;
+  height: 94px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.option.selected, .product-option.selected {
+  border: 3px solid rgb(106, 191, 4);
+}
+
+.product-option {
+  height: 183px;
+}
+
+#feedin, #noBillSection, #roofOptions, #batteryOptions, #smartmeter, #storageQty, #ductedQty, #HeaterQty, #instQty, #HydroQty, #cooktopQty, #freestandingQty, #gasOvenQty, #poolQty, #thermalQty, #vehicleType, #averageDailyTravel {
+  display: none;
+}
+
+#amountDisplay, #amountDisplay2, #amountDisplay3 {
+  font-family: "Varela Round", sans-serif;
+  color: #3a3e45;
+}
+
+#backToUploadBtn {
+  display: block;
+  margin: 40px auto;
+  border-radius: 4px;
+  min-width: 160px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.contactDetails input, #sectorList select {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.gasSlider, #noBillSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+  max-width: 500px;
+}
+
+#nogas {
+  margin: 30px 0;
+  font-size: 21px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px;
+}
+#nogas input[type=checkbox] {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 10px;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+}
+#nogas input[type=checkbox]::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+#nogas input[type=checkbox]:checked::before {
+  background-color: rgb(106, 191, 4);
+}
+#nogas input[type=checkbox]:checked::after {
+  content: "✓";
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#nogas label {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+#product-img {
+  max-height: 100px;
+  margin-bottom: 10px;
+}
+
+#car-img {
+  max-width: 160px;
+  margin-bottom: 10px;
+}
+
+.optionAndQtybox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.optionAndQtybox .quantity-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.optionAndQtybox .quantity-input .quantity-label {
+  margin-left: 10px;
+}
+.optionAndQtybox .quantity-input .quantity-btn {
+  width: 40px;
+  height: 45px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+.optionAndQtybox .quantity-input .quantity-btn:hover {
+  background-color: #e0e0e0;
+}
+.optionAndQtybox .quantity-input .quantity-btn:active {
+  background-color: #969696;
+}
+.optionAndQtybox .quantity-input .quantity {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+  border: none;
+  -moz-appearance: textfield;
+}
+.optionAndQtybox .quantity-input .quantity::-webkit-outer-spin-button, .optionAndQtybox .quantity-input .quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+.contactDetails div {
+  margin-bottom: 20px;
+}
+.contactDetails div label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.contactDetails div input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.Subblue {
+  color: rgb(106, 191, 4);
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.submsg {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
+}
+.submsg .whatsnext {
+  font-size: 18px;
+  text-align: center;
+  padding: 20px;
+}
+
+label[for=dollarAmount],
+label[for=dollarAmount2],
+label[for=dollarAmount3] {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+  outline: none;
+  border-radius: 8px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #3a3e45;
+  cursor: pointer;
+  border-radius: 50%;
+}
+input[type=range]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #3a3e45;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#addVehicleButton {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #828083;
+  color: white;
+  border-radius: 4px;
+  min-width: 160px;
+  display: block;
+  margin: 50px auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .step-container {
+    width: calc(100% / (number of steps));
+    flex-grow: 0;
+  }
+  .centered-div {
+    width: calc(100vw - 40px);
+  }
+  .line {
+    width: calc(100% - 0px) !important;
+    top: 25% !important;
+    transform: translateY(-50%);
+    left: 40px !important;
+  }
+  .step-desc {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-top: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  #dropArea {
+    min-width: 200px;
+  }
+}/*# sourceMappingURL=styles.css.map */
