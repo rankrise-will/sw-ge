@@ -331,7 +331,7 @@ h2 {
   display: none;
 }
 
-#amountDisplay, #amountDisplay2, #amountDisplay3 {
+#amountDisplay, #amountDisplay2, #amountDisplay3, #finalStepAmountDisplay {
   font-family: "Varela Round", sans-serif;
   color: #3a3e45;
 }
@@ -361,7 +361,7 @@ h2 {
   margin-top: 10px;
 }
 
-.gasSlider, #noBillSection {
+.gasSlider, #finalStepSlider, #noBillSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -370,6 +370,15 @@ h2 {
   text-align: center;
   margin: auto;
   max-width: 500px;
+}
+
+#finalStepDollarAmount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 8px;
+  border-radius: 8px;
+  background: #ccc;
 }
 
 #nogas {
@@ -516,7 +525,8 @@ h2 {
 
 label[for=dollarAmount],
 label[for=dollarAmount2],
-label[for=dollarAmount3] {
+label[for=dollarAmount3],
+label[for=finalStepDollarAmount] {
   font-size: 24px;
   margin-bottom: 10px;
   display: inline-block;
@@ -586,5 +596,21 @@ input[type=range]::-moz-range-thumb {
   }
   #dropArea {
     min-width: 200px;
+  }
+}
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }/*# sourceMappingURL=styles.css.map */
