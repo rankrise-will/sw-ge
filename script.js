@@ -55,6 +55,9 @@ window.onload = () => {
   const cookingSection = document.getElementById('cookingSection');
   const poolSection = document.getElementById('poolSection');
   const retailerCards = document.querySelectorAll('.retailer-card');
+  const finalStepSlider = document.getElementById('finalStepSlider');
+  const finalStepDollarAmount = document.getElementById('finalStepDollarAmount');
+  const finalStepAmountDisplay = document.getElementById('finalStepAmountDisplay');
   
 
   noBillSection.style.display = 'block'; 
@@ -235,15 +238,30 @@ window.onload = () => {
             nextBtn.style.backgroundColor = '';
         }
     } else if (currentStep === 3) {
-        if (isNameValid && isAddressValid && isEmailValid) {
-            nextBtn.disabled = false;
-            nextBtn.style.backgroundColor = '';
-        } else {
-            nextBtn.disabled = true;
-            nextBtn.style.backgroundColor = 'rgb(230, 242, 216)';
-        }
+      if (
+        isNameValid &&
+        isAddressValid &&
+        isEmailValid &&
+        (isSliderValueValid || isPDFUploaded)
+      ) {
+        nextBtn.disabled = false;
+        nextBtn.style.backgroundColor = '';
+      } else {
+        nextBtn.disabled = true;
+        nextBtn.style.backgroundColor = 'rgb(230, 242, 216)';
+      }
     }
-}
+  
+
+    if (
+      finalStepSlider.style.display === 'block' &&
+      finalStepSlider.classList.contains('finalStepSlider') &&
+      sliderValue <= 0
+    ) {
+      nextBtn.disabled = true;
+      nextBtn.style.backgroundColor = 'rgb(230, 242, 216)';
+    }
+  }
 
 
   function validateEmail(email) {
@@ -263,6 +281,7 @@ window.onload = () => {
       sectorList.style.display = 'none';
       dollarAmount.max = 10000;
       dollarAmount3.max = 10000;
+      finalStepDollarAmount.max = 10000;
       document.getElementById('noBillSection').scrollIntoView({
         behavior: 'smooth'
     });
@@ -273,6 +292,7 @@ window.onload = () => {
       sectorList.style.display = 'block';
       dollarAmount.max = 500000;
       dollarAmount3.max = 500000;
+      finalStepDollarAmount.max = 500000;
 
       document.getElementById('noBillSection').scrollIntoView({
         behavior: 'smooth'
@@ -400,7 +420,11 @@ window.onload = () => {
     dropArea.style.flexDirection = 'column';  
     dropArea.style.alignItems = 'center';
     noBillButton.style.display = 'block';  
-    backToUploadBtn.style.display = 'none';  
+    backToUploadBtn.style.display = 'none';
+    dollarAmount.value = 0;
+    amountDisplay.textContent = '0';
+    sliderValue = 0; 
+    updateButtonVisibility(); 
   });
 
   dollarAmount.addEventListener('input', () => {
@@ -429,6 +453,12 @@ window.onload = () => {
     amountDisplay3.textContent = formatNumber(sliderValue);
     updateButtonVisibility();
     handleGasStepVisibility();
+  });
+
+  finalStepDollarAmount.addEventListener('input', () => {
+    sliderValue = parseFloat(finalStepDollarAmount.value) || 0;
+    finalStepAmountDisplay.textContent = formatNumber(sliderValue);
+    updateButtonVisibility();
   });
 
   nextBtn.addEventListener('click', () => {
@@ -697,10 +727,11 @@ window.onload = () => {
   
     nextBtn.setAttribute("disabled", "disabled");
     prevBtn.setAttribute("disabled", "disabled");
+    nextBtn.innerHTML = '<span class="spinner"></span> Sending...';
     errorsElem.style.display = 'none';
   
     const formData = new FormData();
-    if (uploadedFile != null) {
+    if (uploadedFile != null && !finalStepSlider.style.display.includes('block')) {
       formData.append('electricityBillPdf', uploadedFile);
     }
     if (uploadedCSV != null) {
@@ -726,6 +757,7 @@ fetch(embed_api_url, {
 })
 .then(success => {
   showSubmissionPage(email);
+  nextBtn.innerHTML = 'Submit';
 })
 .catch((error) => {
   console.error(`Error for API key ${defaultApiKey}:`, error);
@@ -733,12 +765,20 @@ fetch(embed_api_url, {
 
   nextBtn.removeAttribute("disabled");
   prevBtn.removeAttribute("disabled");
+  nextBtn.innerHTML = 'Submit';
 
   error.json().then(errors => {
-    errorsElem.style.display = '';
-    let textContent = 'Errors:\n\n';
-    errors.forEach(err => textContent += `- ${err.message}\n`);
-    errorsElem.textContent = textContent;
+    errorsElem.style.display = 'none';
+    finalStepSlider.style.display = 'block'; 
+    finalStepSlider.classList.add('finalStepSlider');
+    document.getElementById('nameField').style.display = 'block';
+    document.getElementById('addressField').style.display = 'block';
+    uploadedFile = null; 
+    sliderValue = 0;
+    finalStepDollarAmount.value = 0;
+    finalStepAmountDisplay.textContent = '0';
+    updateButtonVisibility(); 
+    alert("Oh no! It looks like your bill could not be read, please input your name and address along with your electricity usage.");
   }).catch(() => { });
 });
 
@@ -754,7 +794,7 @@ fetch(embed_api_url, {
       customerEmail: emailInput.value.trim(),
       customerName: isPdfUpload ? null : nameInput.value,
       address: isPdfUpload ? null : addressInput.value,
-      electricityAnnualBill: parseFloat(dollarAmount.value) || null,
+      electricityAnnualBill: parseFloat(dollarAmount.value) || parseFloat(finalStepDollarAmount.value) || null,
       solar: {
         hasRoofSpace: selectedRoofOption === 'yesroof',
         hasExistingSolar: hasSolar,
