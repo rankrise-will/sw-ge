@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 55.7 27.8" style="enable-background:new 0 0 55.7 27.8;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#838083;}
+	.st2{fill:url(#SVGID_00000049206472173296890030000002110368921690158982_);}
+	.st3{fill:url(#SVGID_00000180342927838621641370000013542268101173793692_);}
+	.st4{fill:url(#SVGID_00000090294803531578191200000010226494320181240216_);}
+</style>
+<pattern  x="-932.1" y="553.3" width="67" height="67" patternUnits="userSpaceOnUse" id="SVGID_0000000884417633830464417" viewBox="0 -67 67 67" style="overflow:visible;">
+	<g>
+		<rect y="-67" class="st0" width="67" height="67"/>
+		<g>
+			<rect y="-67" class="st0" width="67" height="67"/>
+			<rect y="-67" class="st1" width="67" height="67"/>
+		</g>
+	</g>
+</pattern>
+<pattern  x="-932.1" y="553.3" width="67" height="67" patternUnits="userSpaceOnUse" id="SVGID_0000013857409576025881454" viewBox="0 -67 67 67" style="overflow:visible;">
+	<g>
+		<rect y="-67" class="st0" width="67" height="67"/>
+		<g>
+			<rect y="-67" class="st0" width="67" height="67"/>
+			<rect y="-67" class="st1" width="67" height="67"/>
+		</g>
+	</g>
+</pattern>
+<pattern  x="-932.1" y="553.3" width="67" height="67" patternUnits="userSpaceOnUse" id="SVGID_1_" viewBox="0 -67 67 67" style="overflow:visible;">
+	<g>
+		<rect y="-67" class="st0" width="67" height="67"/>
+		<g>
+			<rect y="-67" class="st0" width="67" height="67"/>
+			<rect y="-67" class="st1" width="67" height="67"/>
+		</g>
+	</g>
+</pattern>
+<g>
+	
+		<pattern  id="SVGID_00000083810285623526407510000013833272780923432621_" xlink:href="#SVGID_1_" patternTransform="matrix(1 0 0 -1 -50 -17574)">
+	</pattern>
+	<path style="fill:url(#SVGID_00000083810285623526407510000013833272780923432621_);" d="M55.6,20.4c0.4-3.9-0.8-7.1-2.7-9.1
+		c-2-2-4.9-2.4-8.3-3C43.1,8,41.2,8,39.9,7.5c-0.6-0.2-1.2-1-1.8-1.5c-2.1-1.6-3.6-3.1-5.8-4.4C27.8-0.8,18.5,0,12.9,0.9
+		c-2.3,0.5-4.7,0.7-6.3,1.5c-1.7,0.8-2.8,3.1-4,4.8c-1,1.5-2.2,3-2.5,4.7c-0.2,1,0,2.3,0,4.1c0,5,0.1,8.1,5,8c0-4.9,2.4-8.3,6.7-8.4
+		c4.5-0.1,7.1,3.5,6.9,8.2c5.9,0.3,12.4,0,18.4,0.1c-0.1-5,2.5-8.4,7-8.4c4.4,0.1,6.8,3.6,6.7,8.2C53.8,24.5,55.4,22.6,55.6,20.4z"
+		/>
+	
+		<pattern  id="SVGID_00000101784227532389543860000015225129826850961849_" xlink:href="#SVGID_0000013857409576025881454" patternTransform="matrix(1 0 0 -1 -50 -17574)">
+	</pattern>
+	<circle style="fill:url(#SVGID_00000101784227532389543860000015225129826850961849_);" cx="12" cy="22.5" r="5.2"/>
+	
+		<pattern  id="SVGID_00000119103981550814671060000007009696052964686783_" xlink:href="#SVGID_0000000884417633830464417" patternTransform="matrix(1 0 0 -1 -50 -17574)">
+	</pattern>
+	<path style="fill:url(#SVGID_00000119103981550814671060000007009696052964686783_);" d="M44.1,17.4c-2.9,0-5.2,2.3-5.2,5.2
+		s2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2S47,17.4,44.1,17.4z"/>
+</g>
+</svg>
