@@ -18,7 +18,7 @@ window.onload = () => {
 
 
   
-  const defaultApiKey = 'uXwpFHLYA2jqv2bv624Wttmd0BU2-NqZpbQpdDX_sQk';
+  const defaultApiKey = '5rfbI8HQvU5XzrXAuSFK_3d2Y8wKrcxaIZsaoMrD9tI';
 
   
   const dropArea = document.getElementById('dropArea');
