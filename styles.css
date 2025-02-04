@@ -4,7 +4,7 @@ body, html {
   display: flex;
   justify-content: center;
   background-color: #f0f0f0;
-  font-family: "Varela Round", sans-serif;
+  font-family: "Montserrat", "Varela Round", sans-serif;
   color: #3a3e45;
   overflow-x: hidden;
 }
@@ -150,7 +150,7 @@ h2 {
 #dropArea #removeUpload,
 #dropArea #uploadLinkCSV,
 #dropArea #removeCSVUpload {
-  color: #0281B0;
+  color: rgb(106, 191, 4);
   cursor: pointer;
   font-weight: 400;
   text-decoration: underline;
@@ -557,6 +557,10 @@ input[type=range]::-moz-range-thumb {
   background: #3a3e45;
   cursor: pointer;
   border-radius: 50%;
+}
+
+#submit-response2 {
+  max-width: 500px;
 }
 
 #addVehicleButton {
