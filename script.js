@@ -18,7 +18,7 @@ window.onload = () => {
 
 
   
-  const defaultApiKey = '5rfbI8HQvU5XzrXAuSFK_3d2Y8wKrcxaIZsaoMrD9tI';
+  const defaultApiKey = 'uXwpFHLYA2jqv2bv624Wttmd0BU2-NqZpbQpdDX_sQk';
 
   
   const dropArea = document.getElementById('dropArea');
@@ -614,36 +614,40 @@ window.onload = () => {
     const isHotWaterSelected = Array.from(hotWaterOptions).some(option => option.classList.contains('selected'));
     const isHeatingSelected = Array.from(heatingOptions).some(option => option.classList.contains('selected'));
     const isCookingSelected = Array.from(cookingOptions).some(option => option.classList.contains('selected'));
-
+    const isPoolSelected = Array.from(poolOptions).some(option => option.classList.contains('selected'));
+  
+    // Update heating section visibility
     if (isHotWaterSelected) {
-      heatingSection.style.display = '';
-      setTimeout(() => {
-        document.getElementById('heatingSection').scrollIntoView({
-          behavior: 'smooth'
-        });
-      }, 100);
+      if (heatingSection.style.display === 'none') {
+        heatingSection.style.display = '';
+        setTimeout(() => {
+          heatingSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     } else {
       heatingSection.style.display = 'none';
     }
-
+  
+    // Update cooking section visibility
     if (isHeatingSelected) {
-      cookingSection.style.display = '';
-      setTimeout(() => {
-        document.getElementById('cookingSection').scrollIntoView({
-          behavior: 'smooth'
-        });
-      }, 100);
+      if (cookingSection.style.display === 'none') {
+        cookingSection.style.display = '';
+        setTimeout(() => {
+          cookingSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     } else {
       cookingSection.style.display = 'none';
     }
-
+  
+    // Update pool section visibility
     if (isCookingSelected) {
-      poolSection.style.display = '';
-      setTimeout(() => {
-        document.getElementById('poolSection').scrollIntoView({
-          behavior: 'smooth'
-        });
-      }, 100);
+      if (poolSection.style.display === 'none') {
+        poolSection.style.display = '';
+        setTimeout(() => {
+          poolSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     } else {
       poolSection.style.display = 'none';
     }
@@ -702,7 +706,6 @@ window.onload = () => {
   function showSubmissionPage(email) {
     document.body.innerHTML = `
       <div class="centered-div">
-        <h1>Electrify Everything</h1>
         <div class="submitted-message">
           <span class="Subblue">Submitted!</span>
           <h2 style="margin:100px 0 100px 0;">Your proposal is currently being created.</h2>
@@ -718,71 +721,73 @@ window.onload = () => {
 
 }
 
-  function sendDataToAPI(data, email) {
-    if (isApiRequestInProgress) {
+function sendDataToAPI(data, email) {
+  if (isApiRequestInProgress) {
       return;
-    }
-  
-    isApiRequestInProgress = true;
-  
-    nextBtn.setAttribute("disabled", "disabled");
-    prevBtn.setAttribute("disabled", "disabled");
-    nextBtn.innerHTML = '<span class="spinner"></span> Sending...';
-    errorsElem.style.display = 'none';
-  
-    const formData = new FormData();
-    if (uploadedFile != null && !finalStepSlider.style.display.includes('block')) {
+  }
+
+  isApiRequestInProgress = true;
+
+  nextBtn.setAttribute("disabled", "disabled");
+  prevBtn.setAttribute("disabled", "disabled");
+  nextBtn.innerHTML = '<span class="spinner"></span> Sending...';
+  errorsElem.style.display = 'none';
+
+  const formData = new FormData();
+  if (uploadedFile != null && !finalStepSlider.style.display.includes('block')) {
       formData.append('electricityBillPdf', uploadedFile);
-    }
-    if (uploadedCSV != null) {
+  }
+  if (uploadedCSV != null) {
       formData.append('intervalData', uploadedCSV);
-    }
-  
-    formData.append('inputs', JSON.stringify(data));
-  
-   
-
-fetch(embed_api_url, {
-  method: 'POST',
-  headers: {
-    'api-key': defaultApiKey,
-  },
-  body: formData
-})
-.then(resp => {
-  if (resp.ok) {
-    return resp.json();
   }
-  return Promise.reject(resp);
-})
-.then(success => {
-  showSubmissionPage(email);
-  nextBtn.innerHTML = 'Submit';
-})
-.catch((error) => {
-  console.error(`Error for API key ${defaultApiKey}:`, error);
-  isApiRequestInProgress = false;
 
-  nextBtn.removeAttribute("disabled");
-  prevBtn.removeAttribute("disabled");
-  nextBtn.innerHTML = 'Submit';
+  formData.append('inputs', JSON.stringify(data));
 
-  error.json().then(errors => {
-    errorsElem.style.display = 'none';
-    finalStepSlider.style.display = 'block'; 
-    finalStepSlider.classList.add('finalStepSlider');
-    document.getElementById('nameField').style.display = 'block';
-    document.getElementById('addressField').style.display = 'block';
-    uploadedFile = null; 
-    sliderValue = 0;
-    finalStepDollarAmount.value = 0;
-    finalStepAmountDisplay.textContent = '0';
-    updateButtonVisibility(); 
-    alert("Oh no! It looks like your bill could not be read, please input your name and address along with your electricity usage.");
-  }).catch(() => { });
-});
+  fetch(embed_api_url, {
+      method: 'POST',
+      headers: {
+          'api-key': defaultApiKey,
+      },
+      body: formData
+  })
+  .then(resp => {
+      if (resp.ok) {
+          return resp.json();
+      }
+      return Promise.reject(resp);
+  })
+  .then(success => {
+      showSubmissionPage(email);
+      nextBtn.innerHTML = 'Submit';
+  })
+  .catch((error) => {
+      console.error(`Error for API key ${defaultApiKey}:`, error);
+      isApiRequestInProgress = false;
 
-  }
+      nextBtn.removeAttribute("disabled");
+      prevBtn.removeAttribute("disabled");
+      nextBtn.innerHTML = 'Submit';
+
+      error.json().then(errors => {
+          errorsElem.style.display = 'none';
+          finalStepSlider.style.display = 'block'; 
+          finalStepSlider.classList.add('finalStepSlider');
+          document.getElementById('nameField').style.display = 'block';
+          document.getElementById('addressField').style.display = 'block';
+          document.getElementById('submit-response').style.display = 'none';
+          document.getElementById('submit-response2').style.display = 'block';
+          uploadedFile = null; 
+          sliderValue = 0;
+          finalStepDollarAmount.value = 0;
+          finalStepAmountDisplay.textContent = '0';
+          updateButtonVisibility(); 
+          alert("Oh no! It looks like your bill could not be read, please input your name and address along with your electricity usage.");
+      }).catch(() => {
+          console.error("Error parsing error response.");
+      });
+  });
+}
+
 
   function gatherFormData() {
     const hasSolar = selectedSolarOption === 'yessolar';
